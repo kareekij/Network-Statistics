@@ -4,6 +4,7 @@ import networkx as nx
 import argparse
 import _mylib
 import numpy as np
+import community
 
 def plot_cc_vs_deg(cc,deg):
 
@@ -29,10 +30,23 @@ if __name__ == '__main__':
 	fname = args.fname
 
 	G = nx.read_edgelist(fname)
+	LCC = max(nx.connected_component_subgraphs(G), key=len)
+
 	degree = G.degree()
 	cc = nx.clustering(G)
 
-	_mylib.draw_graph_tool(G)
+	diameter = nx.diameter(LCC)
+
+	print('-'*10)
+	print(nx.info(G))
+	print('Avg. CC', nx.average_clustering(G))
+	print('Diameter', diameter)
+	print('# Connected components', nx.number_connected_components(G))
+
+	community.best_partition(LCC)
+
+
+	#_mylib.draw_graph_tool(G)
 
 	# plot_cc_vs_deg(cc,degree)
 	# _mylib.degreeHist(degree.values())
