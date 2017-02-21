@@ -9,7 +9,7 @@ Measure some fundamental properties of the networks
 5. Diameter
 6. # of connected components
 7. Modularity (Louvain method)
-8. Visualization (optinal) - If needed, please add this line `_mylib.draw_graph_tool(G)` in the code
+8. Visualization (optional) - If needed, please add this line `_mylib.draw_graph_tool(G)` in the code
 
 # Required packages.
 1. networkx
