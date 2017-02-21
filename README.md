@@ -1,7 +1,7 @@
 # Network-Statistics
 Measure some fundamental properties of the networks
 ------
-Display:
+# Display:
 1. # of nodes
 2. # of edges
 3. Avg. degree
