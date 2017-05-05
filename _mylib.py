@@ -410,3 +410,37 @@ def draw_graph_tool(g, op):
     pos = sfdp_layout(gt_graph, max_iter=100, multilevel=True)
 
     graph_draw(gt_graph, pos, output_size=(500, 500), output='./output/' + str(op))
+
+
+def read_mtx_file(fname):
+    file = open(fname, "r")
+    edges_list = []
+    for i, line in enumerate(file.readlines()):
+        s = (line[0])
+        if s == "%":
+            print(line)
+            continue
+        line = str.replace(line, '\n', '')
+        line = str.replace(line, ',', ' ')
+        tmp = line.split(' ')[:2]
+        #print(tmp)
+
+        edges_list.append(tuple(tmp))
+
+    #print(edges_list)
+    return edges_list
+
+def read_file(fname):
+    ext = fname.split('.')[-1]
+
+    print(' Reading.. {} format'.format(ext))
+    if ext == 'mtx' or ext == 'edges':
+        edges_list = read_mtx_file(fname)
+        G = nx.Graph()
+        G.add_edges_from(edges_list)
+
+    # elif ext == 'edges':
+    #     G = nx.read_edgelist(fname, comments="%")
+    else:
+        G = nx.read_edgelist(fname)
+    return G
