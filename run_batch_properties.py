@@ -46,7 +46,7 @@ def community_size(G,p):
 	return p_size
 
 def read_check_file(folder_path):
-	fname = folder_path + 'check.txt'
+	fname = folder_path + CHECK_FILENAME
 
 	files_check = set()
 
@@ -54,7 +54,7 @@ def read_check_file(folder_path):
 		return files_check
 
 	file = open(fname, "r")
-	print("Reading check.txt .. ")
+	print("Reading {} .. ".format(CHECK_FILENAME))
 	for line in (file.readlines()):
 		line = line.replace("\n","")
 		print(	' {} '.format(line))
@@ -84,7 +84,7 @@ if __name__ == '__main__':
 	#
 	args = parser.parse_args()
 	folder = args.folder#'data3'
-
+	CHECK_FILENAME = 'check.chk'
 	folder_path = os.getcwd() + '/' + folder + '/'
 
 	print('Folder:', folder_path)
@@ -93,7 +93,7 @@ if __name__ == '__main__':
 
 	for filename in os.listdir(folder_path):
 		data = []
-		if filename == 'check.txt':
+		if filename == CHECK_FILENAME:
 			continue
 
 		if filename not in files_checker:
@@ -147,7 +147,7 @@ if __name__ == '__main__':
 			print("	 - {} PASSED ".format(filename))
 
 
-		write_to_file('./stats.txt',data)
+		write_to_file('./socfb.txt',data)
 
 
 
